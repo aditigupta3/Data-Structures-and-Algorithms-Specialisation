@@ -24,7 +24,6 @@ def max_pairwise_product(numbers):
 
 
 if __name__ == '__main__':
-    """Press Ctrl + D on mac to specify end of input on mac terminal"""
-    input_n = input()
-    input_numbers = [int(x) for x in input_n.split()]
+    input_n = int(input())
+    input_numbers = [int(x) for x in input().split()]
     print(max_pairwise_product(input_numbers))
