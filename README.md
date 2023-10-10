@@ -7,8 +7,8 @@ Here are some of my key takeaways from the specialisation:
 #### Fibonacci Numbers
 $$F_n = F_{n-1} + F_{n-2}$$
 with $F_0 = 0$ and $F_1 = 1$
-1. Fibonacci numbers grow rapidly: $ F_n \geq 2^{n/2} $ for $ n \geq 6$.
-2. Naive algorithm using recursion leads to a tree of recursive calls. $ T_n = = T_{n-1} + T_{n-2} + c$ for $n>1$. Grows the same way as Fibonacci numbers themselves - exponentially.
+1. Fibonacci numbers grow rapidly: $F_n \geq 2^{n/2}$ for $n \geq 6$.
+2. Naive algorithm using recursion leads to a tree of recursive calls. $T_n = = T_{n-1} + T_{n-2} + c$ for $n>1$. Grows the same way as Fibonacci numbers themselves - exponentially.
 3. Improved algorithm using iterative approach. O(n) complexity.
 
 #### Greatest Common Divisor
@@ -23,6 +23,6 @@ with $F_0 = 0$ and $F_1 = 1$
 4. Big O notation: $f(n) = O(g(n))$ means $f$ is bounded above by $g$.
 5. $f(n) = \Omega(g(n))$ means $f$ is bounded below by $g$.
 6. $f(n) = \Theta(g(n))$ means $f$ grows at the same rate as $g$.
-$$ log(n) \prec \sqrt n \prec n \prec n*log(n) \prec n^a \prec b^n$$
+$$log(n) \prec \sqrt n \prec n \prec n*log(n) \prec n^a \prec b^n$$
 where $a > 0$ and $b>1$
 
