@@ -58,7 +58,7 @@ where $a > 0$ and $b>1$
 
 2. **Master Theorem:** If $T(n) = aT(\lceil n/b \rceil) + O(n^d)$ for constants $a>0$, $b>1$ and $d\geq0$, then, it can be proven using recurrence trees that:
 $$
-\begin{align*}
+\begin{aligned}
 T(n) &= \left\{
 \begin{array}{ll}
 O(n^d) & \text{for } d > log_ba \\
@@ -66,7 +66,7 @@ O(n^dlogn) & \text{for } d = log_ba \\
 O(n^{log_ba}) & \text{for } d < log_ba \\
 \end{array}
 \right.
-\end{align*}
+\end{aligned}
 $$
 
 3. Example Problems:
@@ -99,16 +99,44 @@ For problems that can be defined in a recursive fashion, when we memoize the res
     mincoins[amount] = min(mincoins[amount - coin_i] for coin_i in denominations).
     * **Edit distance problem:** 
     Types of possible edits between string1 and string2: matches, mismatches, insertions and deletions. We use 2D dynamic programmming where each matrix element $D[i,j]$ is the edit distance between string1[:i] and string2[:j]. We fill the matrix row by row using the rule:
-$$
-\begin{align*}
-D[i, j] &= min \left\{
-\begin{array}{ll}
-D[i, j-1]+1 & \text{for insertion} \\
-D[i-1, j]+1 & \text{for deletion} \\
-D[i-1, j-1]+1 & \text{if } string1[i] \neq string2[j] \text{ for mismatch}\\
-D[i-1, j-1] & \text{if } string1[i] = string2[j] \text{ for match}\\
-\end{array}
-\right.
-\end{align*}
-$$
+    $$
+    \begin{aligned}
+    D[i, j] &= 
+    min \left\{
+    \begin{array}{ll}
+    D[i, j-1]+1 & \text{for insertion} \\
+    D[i-1, j]+1 & \text{for deletion} \\
+    D[i-1, j-1]+1 & \text{if } string1[i] \neq string2[j] \text{ for mismatch}\\
+    D[i-1, j-1] & \text{if } string1[i] = string2[j] \text{ for match}\\
+    \end{array}
+    \right.
+    \end{aligned}
+    $$
+    * **Discrete Knapsack Problem:** Choosing the object with maximum value per unit weight is not the optimal strategy anymore. Time complexity: $O(nW)$
+        * With repetitions: 1D knapsack with:
+        <br />$value(w) = \max_{\{i:w_i\leq w\}} \{value(w-w_i)+v_i\}$.
+        * Without repetitions: Subproblem $value(w, i)$ is the maximum achievable value using a knapsack of weight $w$ using items $1,...,i$. Then the 2D knapsack problem becomes:
+        <br /> $value(w, i) = max\{value(w-w_i, i-1) + v_i, value(w, i-1)\}$
+    
+    * **Placing parentheses** for an arithematic expression in order to maximise or minimise the value of the expression. $M(i, j)$ denotes the maximum possible value of sub expression from $i^{th}$  digit to $j^{th}$ digit and $m(i,j)$ denotes the minimum possible value.
+        * 2D DP. We need to solve problems in order of increasing size, that is, increasing $j-i$.
+        * Time complexity: $O(n^3)$.
+        * We can determine the element $M(i,j)$ using the recurrence relation ($m(i, j)$ can be determined very similarly by choosing the minimum value instead of maximum):
+
+    $$
+    \begin{aligned}
+    M(i,j) &= 
+    max_{i\leq k \leq j-1} \left\{
+    \begin{array}{ll}
+    M(i, k) op_k M(k+1, j) \\
+    M(i, k) op_k m(k+1, j) \\
+    m(i, k) op_k M(k+1, j) \\
+    m(i, k) op_k m(k+1, j) \\
+    \end{array}
+    \right.
+    \end{aligned}
+    $$
+2. Which one is faster? Recursive or iterative DP?
+    * Iterative algorithm goes by solving the smaller problem and then larger ones. This can be slower in case we don't need to solve all kinds of sub problems.
+    * Recursive algorithm: Top down. Can be slightly slower than iterative algorithms because of the recursion overhead.
 
